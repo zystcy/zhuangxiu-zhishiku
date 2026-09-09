@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瓦工铺贴 · 装修直播间讲解手册</title>
+<style>
+:root{
+  --bg:#faf7f2; --card:#ffffff; --ink:#2b2622; --muted:#8a8178;
+  --brand:#c8743a; --brand2:#e0a45e; --brand3:#f4a259; --soft:#fbf2e9;
+  --line:#ece4da; --ok:#3f9d6d; --warn:#d4662f; --live:#e2483d;
+  --shadow:0 8px 30px rgba(120,90,50,.10);
+  --shadow-lg:0 18px 50px rgba(120,90,50,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;
+  background-color:var(--bg);
+  background-image:radial-gradient(rgba(200,116,58,.05) 1px, transparent 1px);
+  background-size:22px 22px;
+  color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(200,116,58,.16);color:var(--ink)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+header.nav{position:sticky;top:0;z-index:50;background:rgba(250,247,242,.9);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px;gap:14px}
+.back{font-size:14px;color:var(--brand);font-weight:600}
+
+.layout{display:grid;grid-template-columns:260px 1fr;gap:34px;padding:40px 0 60px;align-items:start}
+.sidebar{position:sticky;top:84px;background:#fff;border:1px solid var(--line);border-radius:16px;
+  padding:14px;box-shadow:var(--shadow);max-height:calc(100vh - 100px);overflow-y:auto}
+.sidebar h5{font-size:12px;color:var(--muted);padding:4px 12px 10px;letter-spacing:1px}
+.sidebar .single{display:block;padding:9px 12px;border-radius:10px;font-size:14.5px;color:#5b5249;margin-bottom:2px;font-weight:600}
+.sidebar .single:hover{background:#f6e6d3;color:var(--brand)}
+.sidebar .single.active{background:var(--brand);color:#fff}
+
+.main{min-width:0}
+
+.breadcrumb{font-size:13px;color:var(--muted);margin-bottom:18px}
+.breadcrumb a{color:var(--brand);font-weight:600}
+.breadcrumb .here{color:var(--ink);font-weight:600}
+
+.node-detail{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.node-detail::before{content:"";position:absolute;left:0;top:0;width:5px;height:100%;background:linear-gradient(180deg,var(--brand),var(--brand3))}
+.node-detail .node-head{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.node-detail .badge{flex:none;width:54px;height:54px;font-size:24px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand3));
+  color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 14px rgba(200,116,58,.28)}
+.node-detail h2{font-size:26px;line-height:1.3}
+.node-detail .days{font-size:13px;color:var(--ok);font-weight:600;margin-top:4px}
+.detail-points{list-style:none;font-size:15px;color:#4a4239;margin-bottom:24px;padding-left:6px}
+.detail-points li{position:relative;padding:11px 0 11px 24px;border-bottom:1px dashed var(--line)}
+.detail-points li:last-child{border-bottom:none}
+.detail-points li::before{content:"";position:absolute;left:0;top:19px;width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand3))}
+.detail-points b{color:var(--ink)}
+.talk-block{background:linear-gradient(160deg,#fdf6ee,#fbeede);border-radius:16px;padding:22px 24px;margin-top:8px;font-size:15px;color:#5b4634;line-height:1.85;position:relative;overflow:hidden}
+.talk-block::before{content:"C";position:absolute;left:12px;top:0;font-size:56px;color:rgba(200,116,58,.16);font-family:Georgia,serif;line-height:1}
+.talk-block .lbl{font-size:12.5px;font-weight:700;color:var(--live);background:#fdecea;
+  display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;margin-bottom:12px;position:relative;z-index:1}
+.talk-block .lbl .ava{width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,var(--live),#f06a4f);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center}
+
+.pager{display:flex;justify-content:space-between;gap:14px;margin-top:24px}
+.pager a{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;
+  font-size:14px;transition:.2s;box-shadow:var(--shadow)}
+.pager a:hover{border-color:var(--brand)}
+.pager a .dir{font-size:12px;color:var(--muted)}
+.pager a .t{font-weight:600;color:var(--brand);display:block;margin-top:2px}
+.pager a.right{text-align:right}
+.pager .placeholder{flex:1}
+
+footer{position:relative;background:linear-gradient(160deg,#2b2622,#3a322b);color:#cdc4ba;padding:46px 0 40px;margin-top:40px;text-align:center;font-size:14px}
+footer::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--brand),var(--brand3),var(--brand2))}
+footer b{color:#fff}
+footer .fbrand{font-size:22px;font-weight:800;color:#fff;margin-bottom:8px}
+footer .flinks{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:14px;font-size:13px}
+footer .flinks a{color:#cdc4ba;transition:.2s}
+footer .flinks a:hover{color:var(--brand2)}
+
+@media(max-width:860px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static;max-height:none}
+}
+
+/* ===== 手册内容排版扩展 ===== */
+.node-detail .lead,.lead{margin:0 0 16px;padding:14px 16px;background:linear-gradient(160deg,#fdf6ee,#fbeede);border:1px solid var(--line);border-radius:12px;font-size:14.5px;color:#4a4239;line-height:1.85}
+.node-detail .sub-sec{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;color:var(--brand);margin:24px 0 6px}
+.node-detail .sub-sec::before{content:"";flex:none;width:5px;height:16px;border-radius:3px;background:linear-gradient(180deg,var(--brand),var(--brand3))}
+.todo-box{border:1.5px dashed var(--brand2);background:#fff;border-radius:16px;padding:34px 24px;text-align:center}
+.todo-box .t{font-size:18px;font-weight:800;color:var(--brand);letter-spacing:3px;margin-bottom:10px}
+.todo-box .d{font-size:14px;color:var(--muted);line-height:1.9}
+.node-detail a,.todo-box a{color:var(--brand);font-weight:600}
+
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap nav-inner">
+  <a class="back" href="stage3.html">← 返回阶段 3 · 瓦木油漆</a>
+</div></header>
+<div class="wrap"><div class="layout">
+  <aside class="sidebar"><h5>本阶段节点</h5>
+      <a class="single active" href="n7.html">⑦ 瓦工铺贴</a>
+      <a class="single" href="n8.html">⑧ 木工吊顶</a>
+      <a class="single" href="n9.html">⑨ 油工刷漆</a>
+    <h5>其他阶段</h5>
+      <a class="single" href="stage1.html">阶段 1 · 前期准备</a>
+      <a class="single" href="stage2.html">阶段 2 · 基础施工</a>
+      <a class="single" href="stage4.html">阶段 4 · 成品安装</a>
+      <a class="single" href="stage5.html">阶段 5 · 收尾入住</a>
+    <a class="single" href="budget.html">预算测算</a>
+    <a class="single" href="pitfall.html">高频踩坑</a>
+    <a class="single" href="cases.html">真实案例</a></aside>
+  <main class="main">
+    <div class="breadcrumb"><a href="index.html">首页</a> / <a href="stage3.html">阶段 3 · 瓦木油漆</a> / <span class="here">瓦工铺贴</span></div>
+    <div class="node-detail">
+      <div class="node-head"><span class="badge">⑦</span><div><h2>瓦工铺贴</h2></div></div>
+      <div class="sub-sec">（一）瓷砖选购要点</div><div class="lead">现在大部分人都会想选择柔光砖、木纹砖，但是不耐脏、难打理；亮面砖遇水易滑，但是好打理。（柔光砖一般偏暗，家里采光好可以使用，采光不好不建议用；亮光砖会有返光晕。）</div><ul class="detail-points"><li>1. 规格：800×800 性价比好；追求高级感、无缝感选 750×1500；墙砖通常用 400×800 或 600×1200 即可。</li><li>2. 学会看参数：首先看是否是优等品；其次看吸水率——小于 0.5 可以在瓷砖背面倒几滴水，5 分钟不渗入，还要附录为 G 的；看生产日期——生产日期必须一样，同样的砖、不同批次难免会有色差；产地最好选择广东；砖上洒水、上脚感受，有涩感为佳；店里灯光会导致瓷砖有色差，一定要搬到太阳光下看看。</li><li>3. 阳角条：可以让厂家直接做海棠角（45 度倒角），一定要先和厂家说，免得后期加钱做（瓦工现场做倒角，此项费用会在工程报价里有体现）。</li><li>4. 合同前确认：免费服务——送货上楼、搬运到户、退货补货（购买的时候需要计算损耗，一般按照 3% 计算；单独厂家购买一定会有上门搬运费用，一般是按照层数计算，有电梯一般按照一层计算）；质量问题包换；明确交货时间（违约金、检测报告这两个基本没有）和发票。</li></ul><div class="sub-sec">（二）瓦工铺贴与验收</div><div class="lead">铺贴验收前先准备好工具：空鼓锤（或勺子）、玻璃球、硬币（或者瓶盖）、银行卡（直角尺）。</div><ul class="detail-points"><li>1. 铺贴排版验收：一定提醒师傅按排版图铺贴！有些老师傅可能会凭自己的经验来铺，最后验收效果不一样。</li><li>2. 验收平整度：用硬币来回滑动十字交叉处，看看是否有凹凸不平，如果顺畅滑行就可以。</li><li>3. 验收空鼓：用空鼓锤敲一敲，空鼓率高的位置一定要重新处理。（地面砖不能有空鼓，否则地面容易开裂；墙面砖 5% 以内的空鼓率为合格，四周少量空鼓可以接受，中间有空鼓一定补救，否则后期容易脱落。）</li><li>4. 验收海棠角：检查是否有绷瓷。</li><li>5. 验收缝隙：留缝 1.5mm～2.0mm 最好。</li><li>6. 坡度验收：地漏为卫生间的最低处，可以用弹珠进行测试。（小经验：显层高，竖贴墙砖；显宽阔，横贴墙砖。）</li><li>7. 出水口验收：洗手盆、淋浴区出水口要涂水不漏，或密封胶封闭，否则角阀安装不严，会出现渗水。</li><li>8. 开孔验收：检查开关、插座等方形位置是否有“小耳朵”，否则后期安装插座就会有缝隙。（提醒：切记看好是否该开孔的位置有开孔，别被盖住了不知道。）</li><figure style="margin:14px auto;text-align:center"><img src="img/image8.png" alt="图8　开关插座开孔验收示意" loading="lazy" style="max-width:100%;max-height:400px;width:auto;height:auto;border:1px solid #e9ddcd;border-radius:12px;background:#fff;box-shadow:0 4px 14px rgba(180,140,90,.1)"/><figcaption style="font-size:12.5px;color:#8a8178;margin-top:6px">图8　开关插座开孔验收示意</figcaption></figure><li>9. 垂直度验收：用一块废砖或直尺检查，误差要小于 3mm，尤其浴室柜、橱柜安装的位置，否则会出现安装与墙面贴合不严、缝隙过大。</li><li>10. 水平度验收：用手机自带水平仪 App，多放几个地方进行验收，数字为 0 则合格。</li><li>11. 止逆阀验收：用整块砖开孔，并贴上止逆阀，避免后期脱落及密封性不好的风险。</li><li>12. 花砖验收：花砖一般有好几个版面，一定要提前排版。</li><li>13. 卫生间门口验收：防止卫生间水流到外面，卫生间瓷砖要比外面砖低 1 公分左右。</li><li>14. 地漏断层验收：切记检查地漏是否有断层，断层会导致返碱、发霉或者恶臭。</li><li>15. 墙地对缝：美观还显空间大；先地砖、再墙砖，墙压地进行铺贴。</li><li>16. 分辨好真假通铺，不要过门石。</li><li>17. 壁龛一定要做好坡度，避免日后积水。</li><li>18. 贴好水电标示贴，方便后续安装设备。</li><li>19. 下水管包好隔音棉+阻尼片，隔音效果好。</li><li>20. 清缝工作要及时处理，避免水泥凝固后难以清理。</li><li>21. 贴砖后记得铺好保护膜。</li><li>22. 一定在贴砖之前决定好门是单包套还是双包套；单包套需要先安门再贴砖。</li><li>23. 马桶下水管要高于地面 1cm。</li></ul>
+    </div>
+<div class="pager">
+      <a href="n6.html"><span class="dir">← 上一节点</span><span class="t">⑥ 防水施工</span></a>
+      <a class="right" href="n8.html"><span class="dir">下一节点 →</span><span class="t">⑧ 木工吊顶</span></a>
+    </div>
+  </main>
+</div></div>
+<footer><div class="wrap">
+  <div class="fbrand">Me<sup style="font-size:.6em;color:#e0a45e">2</sup>hood</div>
+  <p style="margin:0;opacity:.85">装修直播间讲解手册 · 装修全流程 15 节点知识库</p>
+  <div class="flinks">
+    <a href="index.html">首页</a><a href="budget.html">预算测算</a><a href="pitfall.html">高频踩坑</a><a href="cases.html">真实案例</a>
+  </div>
+  <p style="margin-top:16px;opacity:.55;font-size:12.5px">内容整理自《装修直播间讲解手册》，供学习参考，具体以当地规范与专业方案为准。</p>
+</div></footer>
+</body>
+</html>

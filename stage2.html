@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>基础施工 · 装修直播间讲解手册</title>
+<style>
+:root{
+  --bg:#faf7f2; --card:#ffffff; --ink:#2b2622; --muted:#8a8178;
+  --brand:#c8743a; --brand2:#e0a45e; --brand3:#f4a259; --soft:#fbf2e9;
+  --line:#ece4da; --ok:#3f9d6d; --warn:#d4662f; --live:#e2483d;
+  --shadow:0 8px 30px rgba(120,90,50,.10);
+  --shadow-lg:0 18px 50px rgba(120,90,50,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;
+  background-color:var(--bg);
+  background-image:radial-gradient(rgba(200,116,58,.05) 1px, transparent 1px);
+  background-size:22px 22px;
+  color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(200,116,58,.16);color:var(--ink)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+header.nav{position:sticky;top:0;z-index:50;background:rgba(250,247,242,.9);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px;gap:14px}
+.logo{display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:21px;color:var(--ink);letter-spacing:.3px;text-decoration:none}
+.logo:hover{opacity:.85}
+.logo .mark{width:36px;height:36px;border-radius:10px;display:block;box-shadow:0 4px 12px rgba(200,116,58,.35)}
+  color:#fff;font-size:15px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(200,116,58,.35)}
+.back{font-size:14px;color:var(--brand);font-weight:600}
+.crumb{font-size:13.5px;color:var(--muted)}
+.crumb a{color:var(--brand);font-weight:600}
+
+.layout{display:grid;grid-template-columns:260px 1fr;gap:34px;padding:40px 0 60px;align-items:start}
+.sidebar{position:sticky;top:84px;background:#fff;border:1px solid var(--line);border-radius:16px;
+  padding:14px;box-shadow:var(--shadow);max-height:calc(100vh - 100px);overflow-y:auto}
+.sidebar h5{font-size:12px;color:var(--muted);padding:4px 12px 10px;letter-spacing:1px}
+.sidebar details{margin-bottom:4px}
+.sidebar summary{padding:9px 12px;border-radius:10px;font-size:14.5px;cursor:pointer;
+  list-style:none;font-weight:600;color:#5b5249;display:flex;align-items:center;justify-content:space-between;transition:.15s}
+.sidebar summary::-webkit-details-marker{display:none}
+.sidebar summary:hover{background:#f6e6d3;color:var(--brand)}
+.sidebar summary.active{background:var(--brand);color:#fff}
+.sidebar summary::after{content:"▸";font-size:10px;transition:.2s}
+.sidebar details[open] summary::after{transform:rotate(90deg)}
+.sidebar .sub{padding:4px 0 6px 6px}
+.sidebar .sub a{display:block;padding:7px 12px 7px 22px;font-size:13.5px;color:#6b6258;border-radius:8px;margin-bottom:2px}
+.sidebar .sub a:hover{background:#f6e6d3;color:var(--brand)}
+.sidebar .sub a.active{background:#fdecea;color:var(--live);font-weight:600}
+.sidebar .single{display:block;padding:9px 12px;border-radius:10px;font-size:14.5px;color:#5b5249;margin-bottom:2px;font-weight:600}
+.sidebar .single:hover{background:#f6e6d3;color:var(--brand)}
+.sidebar .single.active{background:var(--brand);color:#fff}
+
+.main{min-width:0}
+
+/* 门户 */
+.hero{position:relative;padding:66px 0 26px;text-align:center;overflow:hidden;
+  background:radial-gradient(1000px 380px at 50% -20%,#f6e6d3 0%,transparent 70%)}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(60px);z-index:0;pointer-events:none}
+.hero::before{width:340px;height:340px;left:-70px;top:30px;background:rgba(224,164,94,.30)}
+.hero::after{width:300px;height:300px;right:-50px;top:70px;background:rgba(232,72,61,.12)}
+.hero-inner{position:relative;z-index:1;display:flex;align-items:center;gap:30px;justify-content:center;flex-wrap:wrap}
+.hero-text{flex:1;max-width:720px;margin:0 auto;text-align:center}
+.hero-text .live-tag{margin-bottom:16px}
+.hero h1{font-size:42px;line-height:1.2;margin-bottom:14px;letter-spacing:-.5px}
+.hero h1 b{color:var(--brand)}
+.hero p{color:var(--muted);font-size:16px;max-width:560px;margin:0 auto}
+.hero-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.hero-stats .chip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 18px;
+  font-size:14px;font-weight:700;color:var(--ink);box-shadow:var(--shadow);display:inline-flex;align-items:center;gap:7px}
+.hero-stats .chip b{color:var(--brand);font-size:17px}
+.hero-stats .chip .dot{width:7px;height:7px;border-radius:50%;background:var(--brand2)}
+.timeline{position:relative;z-index:1;display:flex;justify-content:space-between;gap:8px;margin:42px auto 4px;max-width:880px;flex-wrap:wrap}
+.tl-item{flex:1;min-width:120px;position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px;border-radius:14px;transition:.2s}
+.tl-item:hover{background:#fff;box-shadow:var(--shadow);transform:translateY(-3px)}
+.tl-item .tl-dot{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand3));color:#fff;
+  font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(200,116,58,.30);transition:.2s}
+.tl-item:hover .tl-dot{transform:scale(1.08) rotate(-4deg)}
+.tl-item .tl-name{font-size:13.5px;font-weight:700;color:#5b5249}
+.tl-item .tl-idx{font-size:11px;color:var(--muted)}
+.timeline .tl-line{position:absolute;top:37px;left:9%;right:9%;height:2px;background:linear-gradient(90deg,var(--brand2),var(--brand));opacity:.5;z-index:0}
+
+.live-tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#fff;
+  background:linear-gradient(135deg,var(--live),#f06a4f);padding:6px 15px;border-radius:999px;
+  box-shadow:0 6px 16px rgba(226,72,61,.25);margin-bottom:16px}
+.live-tag .dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.3s infinite}
+@keyframes blink{50%{opacity:.25}}
+.hero h1{font-size:38px;line-height:1.25;margin-bottom:12px}
+.hero h1 b{color:var(--brand)}
+.hero p{color:var(--muted);font-size:16px;max-width:660px;margin:0 auto}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:30px 0 50px}
+.cat{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow);
+  transition:.25s;display:flex;flex-direction:column;gap:8px;min-height:165px;overflow:hidden}
+.cat::before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:linear-gradient(90deg,var(--brand),var(--brand3));transform:scaleX(0);transform-origin:left;transition:.25s}
+.cat:hover{transform:translateY(-6px);border-color:var(--brand);box-shadow:var(--shadow-lg)}
+.cat:hover::before{transform:scaleX(1)}
+.cat .ico{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#fdeede,#fbe7cf);display:flex;align-items:center;justify-content:center;font-size:26px;transition:.25s}
+.cat:hover .ico{transform:scale(1.12) rotate(-6deg)}
+.cat h3{font-size:18px}
+.cat .desc{font-size:13px;color:var(--muted);flex:1}
+.cat .go{font-size:13.5px;font-weight:700;color:var(--brand)}
+.cat .badge-num{font-size:12px;color:var(--brand);font-weight:700}
+
+.sec-head{margin-bottom:26px}
+.sec-head .tag{display:inline-block;font-size:13px;color:var(--brand);background:#f6e6d3;
+  padding:4px 14px;border-radius:999px;margin-bottom:10px;font-weight:600}
+.sec-head h2{font-size:27px}
+.sec-head p{color:var(--muted);margin-top:6px}
+
+.breadcrumb{font-size:13px;color:var(--muted);margin-bottom:18px}
+.breadcrumb a{color:var(--brand);font-weight:600}
+.breadcrumb .here{color:var(--ink);font-weight:600}
+
+/* 阶段页：节点卡片链接 */
+.node-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.node-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;transition:.25s;position:relative;overflow:hidden}
+.node-card::after{content:"→";position:absolute;right:20px;top:22px;color:var(--brand2);font-size:20px;opacity:0;transition:.2s}
+.node-card:hover{transform:translateY(-4px);border-color:var(--brand);box-shadow:var(--shadow-lg)}
+.node-card:hover::after{opacity:1;right:16px}
+.node-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+.badge{flex:none;width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand3));
+  color:#fff;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 14px rgba(200,116,58,.28)}
+.node-head h3{font-size:19px;line-height:1.3}
+.days{font-size:12.5px;color:var(--ok);font-weight:600}
+.preview{list-style:none;font-size:14px;color:#5b5249;margin:6px 0 14px;flex:1}
+.preview li{position:relative;padding-left:14px;margin-bottom:4px}
+.preview li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--brand2)}
+.more{align-self:flex-start;font-size:13.5px;font-weight:700;color:var(--brand);
+  background:#f6e6d3;padding:6px 14px;border-radius:999px}
+
+/* 节点详情页 */
+.node-detail{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.node-detail::before{content:"";position:absolute;left:0;top:0;width:5px;height:100%;background:linear-gradient(180deg,var(--brand),var(--brand3))}
+.node-detail .node-head{margin-bottom:18px}
+.node-detail .badge{width:54px;height:54px;font-size:24px;border-radius:14px}
+.node-detail h2{font-size:24px}
+.detail-points{list-style:none;font-size:15px;color:#4a4239;margin-bottom:20px;padding-left:6px}
+.detail-points li{position:relative;padding:11px 0 11px 24px;border-bottom:1px dashed var(--line)}
+.detail-points li:last-child{border-bottom:none}
+.detail-points li::before{content:"";position:absolute;left:0;top:19px;width:9px;height:9px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand3))}
+.detail-points b{color:var(--ink)}
+.talk-block{background:linear-gradient(160deg,#fdf6ee,#fbeede);border-radius:16px;padding:20px 22px;margin-top:8px;font-size:15px;color:#5b4634;line-height:1.85;position:relative;overflow:hidden}
+.talk-block::before{content:"C";position:absolute;left:12px;top:0;font-size:56px;color:rgba(200,116,58,.16);font-family:Georgia,serif;line-height:1}
+.talk-block .lbl{font-size:12.5px;font-weight:700;color:var(--live);background:#fdecea;
+  display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;margin-bottom:10px;position:relative;z-index:1}
+.talk-block .lbl .ava{width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,var(--live),#f06a4f);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center}
+
+.pager{display:flex;justify-content:space-between;gap:14px;margin-top:22px}
+.pager a{flex:1;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;
+  font-size:14px;transition:.2s;box-shadow:var(--shadow)}
+.pager a:hover{border-color:var(--brand)}
+.pager a .dir{font-size:12px;color:var(--muted)}
+.pager a .t{font-weight:600;color:var(--brand);display:block;margin-top:2px}
+.pager a.right{text-align:right}
+
+/* 计算器 */
+.calc{background:linear-gradient(135deg,#fff,#fdf6ee);border:1px solid var(--line);border-radius:20px;padding:28px;box-shadow:var(--shadow)}
+.calc-row{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;margin-bottom:20px}
+.field{flex:1;min-width:190px}
+.field label{display:block;font-size:14px;color:var(--muted);margin-bottom:6px}
+.field input,.field select{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;background:#fff}
+.result{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:10px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:center;transition:.2s}
+.stat:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.stat .v{font-size:21px;font-weight:800;color:var(--brand)}
+.stat .l{font-size:12.5px;color:var(--muted);margin-top:4px}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+
+/* 表格 */
+.tbl-wrap{overflow-x:auto;border-radius:14px;box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;background:#fff;min-width:640px}
+th,td{padding:13px 16px;text-align:left;font-size:14.5px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:linear-gradient(135deg,#f6e6d3,#fbe7cf);color:var(--brand);font-weight:700}
+tr:last-child td{border-bottom:none}
+.stage-tag{font-size:12px;background:#f2ece3;color:var(--muted);padding:2px 8px;border-radius:6px;white-space:nowrap}
+
+/* 案例 */
+.case{background:#fff;border:1px solid var(--line);border-left:5px solid var(--warn);border-radius:14px;
+  padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow);transition:.2s}
+.case:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.case h4{font-size:18px;margin-bottom:4px}
+.case .who{font-size:13px;color:var(--live);font-weight:600}
+.case p{color:#5b5249;font-size:14.5px;margin-top:8px}
+.warn-box{background:#fdf0ec;border-radius:10px;padding:12px 14px;margin-top:12px;font-size:14px;color:#7a3b22}
+.warn-box b{color:var(--warn)}
+
+footer{position:relative;background:linear-gradient(160deg,#2b2622,#3a322b);color:#cdc4ba;padding:46px 0 40px;margin-top:40px;text-align:center;font-size:14px}
+footer::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--brand),var(--brand3),var(--brand2))}
+footer b{color:#fff}
+footer .fbrand{font-size:22px;font-weight:800;color:#fff;margin-bottom:8px}
+footer .flinks{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-top:14px;font-size:13px}
+footer .flinks a{color:#cdc4ba;transition:.2s}
+footer .flinks a:hover{color:var(--brand2)}
+
+@media(max-width:980px){.cat-grid{grid-template-columns:repeat(2,1fr)}.node-cards{grid-template-columns:1fr}.hero h1{font-size:34px}}
+@media(max-width:860px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static;max-height:none}
+  .result{grid-template-columns:repeat(2,1fr)}
+  .timeline{flex-direction:column;align-items:stretch}
+  .timeline .tl-line{display:none}
+  .tl-item{flex-direction:row;justify-content:flex-start;gap:14px;padding:12px 16px}
+}
+@media(max-width:560px){.cat-grid{grid-template-columns:1fr 1fr}.hero h1{font-size:28px}}
+
+/* ===== 手册内容排版扩展 ===== */
+.node-detail .lead,.lead{margin:0 0 16px;padding:14px 16px;background:linear-gradient(160deg,#fdf6ee,#fbeede);border:1px solid var(--line);border-radius:12px;font-size:14.5px;color:#4a4239;line-height:1.85}
+.node-detail .sub-sec{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800;color:var(--brand);margin:24px 0 6px}
+.node-detail .sub-sec::before{content:"";flex:none;width:5px;height:16px;border-radius:3px;background:linear-gradient(180deg,var(--brand),var(--brand3))}
+.todo-box{border:1.5px dashed var(--brand2);background:#fff;border-radius:16px;padding:34px 24px;text-align:center}
+.todo-box .t{font-size:18px;font-weight:800;color:var(--brand);letter-spacing:3px;margin-bottom:10px}
+.todo-box .d{font-size:14px;color:var(--muted);line-height:1.9}
+.node-detail a,.todo-box a{color:var(--brand);font-weight:600}
+
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap nav-inner">
+  <a class="back" href="index.html">← 返回首页</a>
+</div></header>
+<div class="wrap"><div class="layout">
+  <aside class="sidebar"><h5>本阶段节点</h5>
+      <a class="single" href="n4.html">④ 拆改工程</a>
+      <a class="single" href="n5.html">⑤ 水电改造</a>
+      <a class="single" href="n6.html">⑥ 防水施工</a>
+      <h5>其他阶段</h5>
+      <a class="single" href="stage1.html">阶段 1 · 前期准备</a>
+      <a class="single" href="stage3.html">阶段 3 · 瓦木油漆</a>
+      <a class="single" href="stage4.html">阶段 4 · 成品安装</a>
+      <a class="single" href="stage5.html">阶段 5 · 收尾入住</a>
+      <a class="single" href="budget.html">预算测算</a>
+      <a class="single" href="pitfall.html">高频踩坑</a>
+      <a class="single" href="cases.html">真实案例</a></aside>
+  <main class="main"><div class="sec-head">
+    <span class="tag">阶段 2 · 基础施工</span>
+    <h2>基础施工的 3 个节点</h2>
+    <p>拆改、水电、防水——隐蔽工程是装修的命脉。点击下面任一卡片进入详情页。</p>
+  </div>
+  <div class="node-cards">
+    <a class="node-card" href="n4.html"><div class="node-head"><span class="badge">④</span><div><h3>拆改工程</h3></div></div><ul class="preview"><li><b>开工前准备：</b>现场三方交底、验收材料、关水电气总阀、封堵地漏、成品保护</li><li><b>拆墙注意：</b>提前堵好下水口，防水泥沙灰堵塞</li><li>拆改高频踩坑 8 条已归入「高频踩坑」页</li></ul><div class="more">查看完整内容 →</div></a>
+    <a class="node-card" href="n5.html"><div class="node-head"><span class="badge">⑤</span><div><h3>水电改造</h3></div></div><ul class="preview"><li><b>插座点位：</b>先按全屋定制留位置，宁多勿少</li><li><b>施工要点：</b>开工前按电器与生活习惯规划点位</li><li><b>验收指南：</b>核对点位、强弱电分开、打压 30 分钟</li></ul><div class="more">查看完整内容 →</div></a>
+    <a class="node-card" href="n6.html"><div class="node-head"><span class="badge">⑥</span><div><h3>防水施工</h3></div></div><ul class="preview"><li>手册无防水专章，先收录散见要点</li><li><b>止水梁：</b>卫生间砌墙做 20cm 混凝土止水梁</li><li><b>细节：</b>门口瓷砖低 1cm、地漏查断层</li></ul><div class="more">查看完整内容 →</div></a>
+  </div></main>
+</div></div>
+<footer><div class="wrap">
+  <div class="fbrand">Me<sup style="font-size:.6em;color:#e0a45e">2</sup>hood</div>
+  <p style="margin:0;opacity:.85">装修直播间讲解手册 · 装修全流程 15 节点知识库</p>
+  <div class="flinks">
+    <a href="index.html">首页</a><a href="budget.html">预算测算</a><a href="pitfall.html">高频踩坑</a><a href="cases.html">真实案例</a>
+  </div>
+  <p style="margin-top:16px;opacity:.55;font-size:12.5px">内容整理自《装修直播间讲解手册》，供学习参考，具体以当地规范与专业方案为准。</p>
+</div></footer>
+<script></script>
+</body>
+</html>
